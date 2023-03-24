@@ -1,6 +1,7 @@
 package main.java.ieseuropa;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Alumno {
 	
@@ -36,6 +37,40 @@ public class Alumno {
 
 	public void setAsignaturas(ArrayList<Asignatura> asignaturas) {
 		this.asignaturas = asignaturas;
+	}
+	
+	public void anadirAsignatura(int nota) {
+		this.asignaturas.add(new Asignatura(nota));
+	}
+	
+	public float notaMedia() {
+		return (float)sumaNotas()/asignaturas.size();
+	}
+	
+	public boolean maximoAsignaturas() {
+		if(asignaturas.size() == 6)
+			return true;
+		else
+			return false;
+	}
+	
+	public int sumaNotas() {
+		int sum = 0;
+		for(Asignatura asignatura: asignaturas) {
+			sum += asignatura.getNota();
+		}
+		return sum;
+	}
+	
+	public float mediana() {
+		Collections.sort(asignaturas);
+        float mediana;
+        if (asignaturas.size() % 2 == 0) {
+        	mediana = ((asignaturas.get(asignaturas.size() / 2 - 1).getNota()) + asignaturas.get(asignaturas.size() / 2).getNota()) / 2.0f;
+        } else {
+            mediana = (float)asignaturas.get(asignaturas.size()).getNota();
+        }
+        return mediana;
 	}
 
 	@Override
