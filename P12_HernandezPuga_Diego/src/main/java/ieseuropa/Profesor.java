@@ -15,6 +15,13 @@ public class Profesor {
 		this.etapa = etapa;
 		this.curso = curso;
 	}
+	
+	public Profesor(String nombre) {
+		this.nombre = nombre;
+		this.alumnos = new ArrayList<>();
+		this.etapa = "";
+		this.curso = 0;
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -48,7 +55,7 @@ public class Profesor {
 		this.curso = curso;
 	}
 	
-	public void anadirAlumno(Alumno alumno) {
+	public void addAlumno(Alumno alumno) {
 		this.alumnos.add(alumno);
 	}
 	

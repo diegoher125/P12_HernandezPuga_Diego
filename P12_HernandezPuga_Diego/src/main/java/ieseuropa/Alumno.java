@@ -39,7 +39,7 @@ public class Alumno {
 		this.asignaturas = asignaturas;
 	}
 	
-	public void anadirAsignatura(int nota) {
+	public void addAsignatura(int nota) {
 		this.asignaturas.add(new Asignatura(nota));
 	}
 	
