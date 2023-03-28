@@ -66,6 +66,17 @@ public class Profesor {
 			return false;
 	}
 	
+	public String maximaNotaMedia() {
+		String nombreMax = "";
+		float mediaMax = 0;
+		for(Alumno alumno: alumnos) {
+			if(mediaMax < alumno.notaMedia()) {
+				
+			}
+		}
+		return "";
+	}
+	
 	@Override
 	public boolean equals(Object o) {
 		if (nombre.equalsIgnoreCase(((Profesor) o).nombre)) {
