@@ -102,7 +102,7 @@ public class P12_HernandezPuga_Diego {
 		while (edad < 11 || edad > 80) {
 			edad = pedirInt("Introduzca la edad de " + nombre);
 		}
-		return new Alumno(nombre, edad);
+		return new Alumno(nombre, edad, "");
 	}
 
 	private static Alumno nuevoAlumno(int num) {

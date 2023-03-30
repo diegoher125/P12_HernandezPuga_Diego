@@ -8,11 +8,13 @@ public class Alumno {
 	private String nombre;
 	private int edad;
 	private ArrayList<Integer> asignaturas;
+	private String nombreProfesor;
 	
-	public Alumno(String nombre, int edad) {
+	public Alumno(String nombre, int edad, String nombreProfesor) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.asignaturas = new ArrayList<>();
+		this.nombreProfesor = nombreProfesor;
 	}
 
 	public String getNombre() {
@@ -39,6 +41,14 @@ public class Alumno {
 		this.asignaturas = asignaturas;
 	}
 	
+	public String getNombreProfesor() {
+		return nombreProfesor;
+	}
+
+	public void setNombreProfesor(String nombreProfesor) {
+		this.nombreProfesor = nombreProfesor;
+	}
+
 	public String addNota(int nota) {
 		if(!maximoAsignaturas()) {
 			if(sePuedeAddNota(nota)) {
@@ -117,7 +127,8 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		return "Alumno [nombre=" + nombre + ", edad=" + edad + ", asignaturas=" + asignaturas + "]";
+		return "Alumno [nombre=" + nombre + ", edad=" + edad + ", asignaturas=" + asignaturas + ", nombreProfesor="
+				+ nombreProfesor + "]";
 	}
 
 }
