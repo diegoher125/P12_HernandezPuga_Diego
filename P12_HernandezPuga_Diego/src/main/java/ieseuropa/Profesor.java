@@ -71,10 +71,19 @@ public class Profesor {
 		float mediaMax = 0;
 		for(Alumno alumno: alumnos) {
 			if(mediaMax < alumno.notaMedia()) {
-				
+				mediaMax = alumno.notaMedia();
+				nombreMax = alumno.getNombre();
 			}
 		}
-		return "";
+		return "La nota media mas alta de " + curso + " " + etapa + " es de " + nombreMax + " con un " + (Math.round(mediaMax * 100.0) / 100.0);
+	}
+	
+	public String medianasAlumnos() {
+		String medianas = "Las medianas en " + curso + " " + etapa + " son\n";
+		for(Alumno alumno: alumnos) {
+			medianas += alumno.getNombre() + "-" + alumno.mediana() + "\n";
+		}
+		return medianas;
 	}
 	
 	@Override
