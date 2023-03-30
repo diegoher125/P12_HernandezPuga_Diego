@@ -96,7 +96,10 @@ public class P12_HernandezPuga_Diego {
 
 	private static Alumno crearAlumno() {
 		String nombre = pedirString("Introduzca el nombre del alumno");
-		int edad = pedirInt("Introduzca la edad de " + nombre);
+		int edad = 0;
+		while (edad < 12 || edad > 80) {
+			edad = pedirInt("Introduzca la edad de " + nombre);
+		}
 		return new Alumno(nombre, edad);
 	}
 
@@ -172,7 +175,19 @@ public class P12_HernandezPuga_Diego {
 		return numSuperanMT;
 	}
 
-	private static void imprimirTodo(ArrayList<Profesor> profesores) {
+	private static void imprimirTotalSuperanNota(ArrayList<Profesor> profesores, int notaASuperar) {
+		float totalNotas = 0;
+		float asigSuperanX = 0;
+		for (Profesor profesor : profesores) {
+			totalNotas += (float) profesor.numTotalAsignaturas();
+			asigSuperanX += (float) profesor.numTotalSuperanNota(notaASuperar);
+		}
+		System.out.println("La nota de " + notaASuperar + " se ha superado en el "
+				+ (Math.round(((asigSuperanX * 100) / totalNotas) * 100.0) / 100.0) + "% de asignaturas, en "
+				+ asigSuperanX + " de " + totalNotas + " calificaciones");
+	}
+
+	private static void imprimirTodo(ArrayList<Profesor> profesores, int notaASuperar) {
 		System.out.println("-----------------------------------------------------------------------");
 		System.out.println("Los resultados son los siguientes");
 		imprimirMediaMax(profesores);
@@ -180,6 +195,7 @@ public class P12_HernandezPuga_Diego {
 		imprimirMedianas(profesores);
 		imprimirSuspensos(profesores);
 		imprimirMediaTotal(profesores);
+		imprimirTotalSuperanNota(profesores, notaASuperar);
 	}
 
 	public static void main(String[] args) {
@@ -189,7 +205,7 @@ public class P12_HernandezPuga_Diego {
 		int notaASuperar = 0;
 		notaASuperar = pedirInt("Indique la nota a superar en las asignaturas:");
 
-		imprimirTodo(profesores);
+		imprimirTodo(profesores, notaASuperar);
 	}
 
 }

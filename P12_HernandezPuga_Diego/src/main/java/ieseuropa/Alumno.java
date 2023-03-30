@@ -91,6 +91,20 @@ public class Alumno {
         return mediana;
 	}
 	
+	public int numAsignaturas() {
+		return asignaturas.size();
+	}
+	
+	public int numSuperanNota(int notaASuperar) {
+		int cont = 0;
+		for(int nota: asignaturas) {
+			if(nota > notaASuperar) {
+				cont++;
+			}
+		}
+		return cont;
+	}
+	
 	public int numSuspensos() {
 		int cont = 0;
 		for(int nota: asignaturas) {

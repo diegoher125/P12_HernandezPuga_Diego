@@ -116,6 +116,22 @@ public class Profesor {
 		return medianas;
 	}
 	
+	public int numTotalAsignaturas() {
+		int numAsig = 0;
+		for(Alumno alumno: alumnos) {
+			numAsig += alumno.numAsignaturas();
+		}
+		return numAsig;
+	}
+	
+	public int numTotalSuperanNota(int notaASuperar) {
+		int numTotal = 0;
+		for(Alumno alumno: alumnos) {
+			numTotal += alumno.numSuperanNota(notaASuperar);
+		}
+		return numTotal;
+	}
+	
 	public String suspensosClase() {
 		String suspensos = "El numero de suspensos en " + curso + " " + etapa + " son\n";
 		for(Alumno alumno: alumnos) {
