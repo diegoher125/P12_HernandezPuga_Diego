@@ -7,7 +7,7 @@ public class Alumno {
 	
 	private String nombre;
 	private int edad;
-	private ArrayList<Asignatura> asignaturas;
+	private ArrayList<Integer> asignaturas;
 	
 	public Alumno(String nombre, int edad) {
 		this.nombre = nombre;
@@ -31,16 +31,26 @@ public class Alumno {
 		this.edad = edad;
 	}
 
-	public ArrayList<Asignatura> getAsignaturas() {
+	public ArrayList<Integer> getAsignaturas() {
 		return asignaturas;
 	}
 
-	public void setAsignaturas(ArrayList<Asignatura> asignaturas) {
+	public void setAsignaturas(ArrayList<Integer> asignaturas) {
 		this.asignaturas = asignaturas;
 	}
 	
-	public void addAsignatura(int nota) {
-		this.asignaturas.add(new Asignatura(nota));
+	public void addNota(int nota) {
+		if(!maximoAsignaturas() && sePuedeAddNota(nota)) {
+			this.asignaturas.add(nota);
+		}
+	}
+	
+	public boolean sePuedeAddNota(int num) {
+		if(num >= 1 && num <= 10) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public float notaMedia() {
@@ -48,16 +58,17 @@ public class Alumno {
 	}
 	
 	public boolean maximoAsignaturas() {
-		if(asignaturas.size() == 6)
+		if(asignaturas.size() >= 6) {
 			return true;
-		else
+		}else{
 			return false;
+		}
 	}
 	
 	public int sumaNotas() {
 		int sum = 0;
-		for(Asignatura asignatura: asignaturas) {
-			sum += asignatura.getNota();
+		for(int nota: asignaturas) {
+			sum += nota;
 		}
 		return sum;
 	}
@@ -66,9 +77,9 @@ public class Alumno {
 		Collections.sort(asignaturas);
         float mediana;
         if (asignaturas.size() % 2 == 0) {
-        	mediana = ((asignaturas.get(asignaturas.size() / 2 - 1).getNota()) + asignaturas.get(asignaturas.size() / 2).getNota()) / 2.0f;
+        	mediana = ((asignaturas.get(asignaturas.size() / 2 - 1)) + asignaturas.get(asignaturas.size() / 2)) / 2.0f;
         } else {
-            mediana = (float)asignaturas.get(asignaturas.size()).getNota();
+            mediana = (float)asignaturas.get(asignaturas.size());
         }
         return mediana;
 	}

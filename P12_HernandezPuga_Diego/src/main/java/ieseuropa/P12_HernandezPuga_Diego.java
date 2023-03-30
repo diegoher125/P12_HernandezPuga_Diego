@@ -98,11 +98,11 @@ public class P12_HernandezPuga_Diego {
 	
 	private static Alumno nuevoAlumno() {
 		Alumno alumno = crearAlumno();
-		int nota = 0;
-		do {
+		int nota = -1;
+		while(nota != 0 || !alumno.maximoAsignaturas()) {
 			nota = pedirInt("Introduzca la nota de " + alumno.getNombre());
-			alumno.addAsignatura(nota);
-		}while(nota != 0 || !alumno.maximoAsignaturas());
+			alumno.addNota(nota);
+		}
 		return alumno;
 	}
 	
@@ -111,8 +111,10 @@ public class P12_HernandezPuga_Diego {
 		String qh = "";
 		while(!qh.equals("0")) {
 			qh = pedirString("¿Quieres añadir un nuevo profesor?(0 si es que no)");
-			profesores.add(nuevoProfesor(profesores));
-			profesores = addAlumnos(profesores);
+			if(!qh.equals("0")) {
+				profesores.add(nuevoProfesor(profesores));
+				profesores = addAlumnos(profesores);
+			}
 		}
 		return profesores;
 	}
@@ -121,7 +123,7 @@ public class P12_HernandezPuga_Diego {
 		// TODO Auto-generated method stub
 		ArrayList<Profesor> profesores = crearCurso();
 		
-		
+		System.out.println();
 	}
 
 }
