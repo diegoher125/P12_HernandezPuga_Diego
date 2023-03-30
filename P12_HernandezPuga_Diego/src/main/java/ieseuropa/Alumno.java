@@ -39,9 +39,16 @@ public class Alumno {
 		this.asignaturas = asignaturas;
 	}
 	
-	public void addNota(int nota) {
-		if(!maximoAsignaturas() && sePuedeAddNota(nota)) {
-			this.asignaturas.add(nota);
+	public String addNota(int nota) {
+		if(!maximoAsignaturas()) {
+			if(sePuedeAddNota(nota)) {
+				this.asignaturas.add(nota);
+				return "Se ha añadido correctamente la nota";
+			}else {
+				return "No se puede añadir esa nota";
+			}
+		}else {
+			return "No se pueden añadir mas notas";
 		}
 	}
 	
