@@ -78,12 +78,52 @@ public class Profesor {
 		return "La nota media mas alta de " + curso + " " + etapa + " es de " + nombreMax + " con un " + (Math.round(mediaMax * 100.0) / 100.0);
 	}
 	
+	public String minimaNotaMedia() {
+		String nombreMin = "";
+		float mediaMin = 0;
+		for(Alumno alumno: alumnos) {
+			if(mediaMin > alumno.notaMedia()) {
+				mediaMin = alumno.notaMedia();
+				nombreMin = alumno.getNombre();
+			}
+		}
+		return "La nota media mas baja de " + curso + " " + etapa + " es de " + nombreMin + " con un " + (Math.round(mediaMin * 100.0) / 100.0);
+	}
+	
+	public int sumaNotasAlumnos() {
+		int num = 0;
+		for(Alumno alumno: alumnos) {
+			num += alumno.sumaNotas();
+		}
+		return num;
+	}
+	
+	public int alumnosSuperanMediaTotal(float mediaTotal) {
+		int cont = 0;
+		for(Alumno alumno: alumnos) {
+			if(alumno.notaMedia() > mediaTotal) {
+				cont++;
+			}
+		}
+		return cont;
+	}
+	
 	public String medianasAlumnos() {
 		String medianas = "Las medianas en " + curso + " " + etapa + " son\n";
 		for(Alumno alumno: alumnos) {
 			medianas += alumno.getNombre() + "-" + alumno.mediana() + "\n";
 		}
 		return medianas;
+	}
+	
+	public String suspensosClase() {
+		String suspensos = "El numero de suspensos en " + curso + " " + etapa + " son\n";
+		for(Alumno alumno: alumnos) {
+			if(alumno.numSuspensos() > 0) {
+				suspensos += alumno.getNombre() + "-" + alumno.numSuspensos() + "\n";
+			}
+		}
+		return suspensos;
 	}
 	
 	@Override

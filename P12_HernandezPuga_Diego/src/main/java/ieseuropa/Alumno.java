@@ -90,6 +90,16 @@ public class Alumno {
         }
         return mediana;
 	}
+	
+	public int numSuspensos() {
+		int cont = 0;
+		for(int nota: asignaturas) {
+			if(nota < 5) {
+				cont++;
+			}
+		}
+		return cont;
+	}
 
 	@Override
 	public String toString() {
