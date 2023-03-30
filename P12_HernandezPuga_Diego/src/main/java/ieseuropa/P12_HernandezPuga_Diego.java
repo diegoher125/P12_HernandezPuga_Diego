@@ -84,27 +84,29 @@ public class P12_HernandezPuga_Diego {
 	private static ArrayList<Profesor> addAlumnos(ArrayList<Profesor> profesores) {
 		String qh = "";
 		for (Profesor profesor : profesores) {
+			System.out.println("A continuación, introduciremos las notas de la clase " + profesor.getCurso() + " "
+					+ profesor.getEtapa() + ":");
 			while (!qh.equals("0")) {
 				qh = pedirString("¿Quieres añadir un nuevo alumno?(0 si es que no)");
 				if (!qh.equals("0") && !profesor.maximoAlumnos()) {
-					profesor.addAlumno(nuevoAlumno());
+					profesor.addAlumno(nuevoAlumno(profesores.indexOf(profesor)));
 				}
 			}
 		}
 		return profesores;
 	}
 
-	private static Alumno crearAlumno() {
-		String nombre = pedirString("Introduzca el nombre del alumno");
+	private static Alumno crearAlumno(int num) {
+		String nombre = pedirString("Introduzca el nombre del alumno " + (num+1));
 		int edad = 0;
-		while (edad < 12 || edad > 80) {
+		while (edad < 11 || edad > 80) {
 			edad = pedirInt("Introduzca la edad de " + nombre);
 		}
 		return new Alumno(nombre, edad);
 	}
 
-	private static Alumno nuevoAlumno() {
-		Alumno alumno = crearAlumno();
+	private static Alumno nuevoAlumno(int num) {
+		Alumno alumno = crearAlumno(num);
 		int nota = -1;
 		while (nota != 0) {
 			nota = pedirInt("Introduzca la nota de " + alumno.getNombre());
@@ -120,7 +122,6 @@ public class P12_HernandezPuga_Diego {
 			qh = pedirString("¿Quieres añadir un nuevo profesor?(0 si es que no)");
 			if (!qh.equals("0")) {
 				profesores.add(nuevoProfesor(profesores));
-				profesores = addAlumnos(profesores);
 			}
 		}
 		return profesores;
@@ -204,7 +205,7 @@ public class P12_HernandezPuga_Diego {
 		profesores = crearCurso();
 		int notaASuperar = 0;
 		notaASuperar = pedirInt("Indique la nota a superar en las asignaturas:");
-
+		profesores = addAlumnos(profesores);
 		imprimirTodo(profesores, notaASuperar);
 	}
 
