@@ -16,6 +16,13 @@ public class Alumno {
 		this.asignaturas = new ArrayList<>();
 		this.nombreProfesor = nombreProfesor;
 	}
+	
+	public Alumno() {
+		this.nombre = "";
+		this.edad = 0;
+		this.asignaturas = new ArrayList<>();
+		this.nombreProfesor = "";
+	}
 
 	public String getNombre() {
 		return nombre;
@@ -132,3 +139,4 @@ public class Alumno {
 	}
 
 }
+

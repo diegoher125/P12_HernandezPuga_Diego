@@ -89,24 +89,24 @@ public class P12_HernandezPuga_Diego {
 			while (!qh.equals("0")) {
 				qh = pedirString("¿Quieres añadir un nuevo alumno?(0 si es que no)");
 				if (!qh.equals("0") && !profesor.maximoAlumnos()) {
-					profesor.addAlumno(nuevoAlumno(profesores.indexOf(profesor)));
+					profesor.addAlumno(nuevoAlumno(profesores.indexOf(profesor), profesor.getNombre()));
 				}
 			}
 		}
 		return profesores;
 	}
 
-	private static Alumno crearAlumno(int num) {
-		String nombre = pedirString("Introduzca el nombre del alumno " + (num+1));
+	private static Alumno crearAlumno(int num, String nombreP) {
+		String nombre = pedirString("Introduzca el nombre del alumno " + (num + 1));
 		int edad = 0;
 		while (edad < 11 || edad > 80) {
 			edad = pedirInt("Introduzca la edad de " + nombre);
 		}
-		return new Alumno(nombre, edad, "");
+		return new Alumno(nombre, edad, nombreP);
 	}
 
-	private static Alumno nuevoAlumno(int num) {
-		Alumno alumno = crearAlumno(num);
+	private static Alumno nuevoAlumno(int num, String nombreP) {
+		Alumno alumno = crearAlumno(num, nombreP);
 		int nota = -1;
 		while (nota != 0) {
 			nota = pedirInt("Introduzca la nota de " + alumno.getNombre());
@@ -132,6 +132,20 @@ public class P12_HernandezPuga_Diego {
 			System.out.println(profesor.maximaNotaMedia());
 		}
 		System.out.println();
+	}
+
+	private static void imprimirMediaMaxInstituto(ArrayList<Profesor> profesores) {
+		Alumno alumnoMax = new Alumno();
+		for (Profesor profesor : profesores) {
+			if (alumnoMax.notaMedia() < profesor.alumnoMaximaNotaMedia().notaMedia()) {
+				alumnoMax = profesor.alumnoMaximaNotaMedia();
+			}
+		}
+		System.out.println("La nota media maxima es de " + alumnoMax.getNombre() + " con un "
+				+ (Math.round(alumnoMax.notaMedia() * 100.0) / 100.0) + " de "
+				+ profesores.get(profesores.indexOf(new Profesor(alumnoMax.getNombreProfesor()))).getCurso() + " "
+				+ profesores.get(profesores.indexOf(new Profesor(alumnoMax.getNombreProfesor()))).getEtapa()
+				+ " cuyo profesor es " + alumnoMax.getNombreProfesor());
 	}
 
 	private static void imprimirMediaMin(ArrayList<Profesor> profesores) {
@@ -193,6 +207,7 @@ public class P12_HernandezPuga_Diego {
 		System.out.println("Los resultados son los siguientes");
 		imprimirMediaMax(profesores);
 		imprimirMediaMin(profesores);
+		imprimirMediaMaxInstituto(profesores);
 		imprimirMedianas(profesores);
 		imprimirSuspensos(profesores);
 		imprimirMediaTotal(profesores);

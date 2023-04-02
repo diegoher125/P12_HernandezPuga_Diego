@@ -78,6 +78,18 @@ public class Profesor {
 		return "La nota media mas alta de " + curso + " " + etapa + " es de " + nombreMax + " con un " + (Math.round(mediaMax * 100.0) / 100.0);
 	}
 	
+	public Alumno alumnoMaximaNotaMedia() {
+		Alumno alumnoMax = new Alumno();
+		float mediaMax = 0;
+		for(Alumno alumno: alumnos) {
+			if(mediaMax < alumno.notaMedia()) {
+				mediaMax = alumno.notaMedia();
+				alumnoMax = alumno;
+			}
+		}
+		return alumnoMax;
+	}
+	
 	public String minimaNotaMedia() {
 		String nombreMin = "";
 		float mediaMin = 0;
@@ -157,3 +169,4 @@ public class Profesor {
 	}
 
 }
+
